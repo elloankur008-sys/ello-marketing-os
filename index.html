@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ellocent Marketing OS — Governed Multi-Project Operations</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">E</div>
+        <div>
+          <div class="brand-title">Ellocent OS</div>
+          <div class="brand-sub">Marketing Governance v2.0</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav" aria-label="Primary Modules">
+        <div class="nav-group-label">Command &amp; Strategy</div>
+        <button type="button" class="nav-item active" data-view="overview">
+          <span>Overview</span>
+        </button>
+        <button type="button" class="nav-item" data-view="campaigns">
+          <span>Campaigns &amp; Pre-Flight</span>
+        </button>
+        <button type="button" class="nav-item" data-view="content">
+          <span>Content Studio</span>
+        </button>
+        <button type="button" class="nav-item" data-view="calendar">
+          <span>Calendar &amp; Publishing</span>
+        </button>
+
+        <div class="nav-group-label">Acquisition &amp; Growth</div>
+        <button type="button" class="nav-item" data-view="seo">
+          <span>SEO &amp; Website Intel</span>
+        </button>
+        <button type="button" class="nav-item" data-view="paid">
+          <span>Paid Media &amp; Diffs</span>
+        </button>
+        <button type="button" class="nav-item" data-view="leads">
+          <span>Leads / CRM</span>
+        </button>
+        <button type="button" class="nav-item" data-view="competitors">
+          <span>Competitor Intel</span>
+        </button>
+
+        <div class="nav-group-label">Governance &amp; Admin</div>
+        <button type="button" class="nav-item" data-view="approvals">
+          <span>Approvals Inbox</span>
+          <span class="nav-badge" id="navApprovalCount" style="display:none;">0</span>
+        </button>
+        <button type="button" class="nav-item" data-view="automations">
+          <span>Automations</span>
+        </button>
+        <button type="button" class="nav-item" data-view="reports">
+          <span>Analytics &amp; Reports</span>
+        </button>
+        <button type="button" class="nav-item" data-view="brand">
+          <span>Brand &amp; Policy Rules</span>
+        </button>
+        <button type="button" class="nav-item" data-view="clients">
+          <span>Clients / Workspaces</span>
+        </button>
+        <button type="button" class="nav-item" data-view="integrations">
+          <span>Integrations &amp; Composio</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer" id="syncStatusFooter">
+        <span class="status-dot status-local" id="cloudStatusDot"></span>
+        <span id="cloudStatusText">Local Mode (Ready for Cloud)</span>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="control-group">
+            <label for="workspaceSelect">WORKSPACE</label>
+            <select id="workspaceSelect" aria-label="Active Workspace"></select>
+          </div>
+          <div class="control-group" id="roleControlGroup">
+            <label for="roleSelect">ROLE</label>
+            <select id="roleSelect" aria-label="Active Role"></select>
+          </div>
+          <span class="telemetry-pill" id="aiTelemetryPill">AI Cap: $0.00 / $150.00 (0.0%)</span>
+        </div>
+
+        <div class="topbar-right">
+          <span id="authSessionSlot"></span>
+          <input type="file" id="importBackupInput" accept=".json,application/json" style="display:none;" />
+          <button type="button" class="btn btn-secondary" id="importBackupBtn">Import Backup</button>
+          <button type="button" class="btn btn-secondary" id="exportBackupBtn">Export Backup</button>
+          <button type="button" class="btn btn-danger" id="resetDemoBtn">Clear / Reset</button>
+        </div>
+      </header>
+
+      <main class="view-container" id="viewContainer"></main>
+    </div>
+  </div>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
