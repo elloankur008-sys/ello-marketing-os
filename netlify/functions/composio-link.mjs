@@ -11,6 +11,15 @@ function parseAuthConfigs() {
   return map;
 }
 
+function extractErrorMessage(data, status) {
+  if (!data) return `Composio HTTP ${status}`;
+  if (typeof data.message === "string") return data.message;
+  if (typeof data.error === "string") return data.error;
+  if (data.error && typeof data.error.message === "string") return data.error.message;
+  if (typeof data.detail === "string") return data.detail;
+  return JSON.stringify(data.error || data);
+}
+
 export default async (req) => {
   const apiKey = process.env.COMPOSIO_API_KEY;
   if (!apiKey) {
@@ -40,13 +49,16 @@ export default async (req) => {
         { headers }
       );
       const data = await resp.json();
+      if (!resp.ok) {
+        throw new Error(extractErrorMessage(data, resp.status));
+      }
       return new Response(
         JSON.stringify({
           configured: true,
           items: data.items || [],
           authConfigs: Object.keys(parseAuthConfigs())
         }),
-        { status: resp.ok ? 200 : resp.status, headers: { "Content-Type": "application/json" } }
+        { status: 200, headers: { "Content-Type": "application/json" } }
       );
     }
 
@@ -79,7 +91,7 @@ export default async (req) => {
       });
       const linkData = await linkResp.json();
       if (!linkResp.ok) {
-        throw new Error(linkData?.message || linkData?.error || `Composio HTTP ${linkResp.status}`);
+        throw new Error(extractErrorMessage(linkData, linkResp.status));
       }
 
       return new Response(
